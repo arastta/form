@@ -1,7 +1,7 @@
 {
     "name": "arastta/form",
     "type": "library",
-    "description": "Arasatta Form Component",
+    "description": "Arastta Form Component",
     "keywords": ["arastta", "form", "builder"],
     "homepage": "http://arastta.org",
     "license": "GPL-3.0",
