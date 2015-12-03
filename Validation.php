@@ -1,4 +1,4 @@
-<?phpp
+<?php
 /**
  * @package		Arastta Form Component
  * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
