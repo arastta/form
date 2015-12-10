@@ -1,55 +1,61 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form\View;
 
-class Inline extends \Arastta\Component\Form\View {
-	
-	protected $class = "form-inline";
+use Arastta\Component\Form\View;
+use Arastta\Component\Form\Element;
 
-	public function render() {
-		$this->_form->appendAttribute("class", $this->class);
+class Inline extends View
+{
+    
+    protected $class = "form-inline";
 
-		echo '<form', $this->_form->getAttributes(), '>';
+    public function render()
+    {
+        $this->form->appendAttribute("class", $this->class);
 
-		$this->_form->getErrorView()->render();
+        echo '<form', $this->form->getAttributes(), '>';
 
-		$elements = $this->_form->getElements();
+        $this->form->getErrorView()->render();
+
+        $elements = $this->form->getElements();
         $elementSize = sizeof($elements);
         $elementCount = 0;
 
         for ($e = 0; $e < $elementSize; ++$e) {
-			if ($e > 0) {
-				echo ' ';
-			}
+            if ($e > 0) {
+                echo ' ';
+            }
 
             $element = $elements[$e];
 
-			echo $this->renderLabel($element), ' ', $element->render(), $this->renderDescriptions($element);
+            echo $this->renderLabel($element), ' ', $element->render(), $this->renderDescriptions($element);
 
-			++$elementCount;
+            ++$elementCount;
         }
 
-		echo '</form>';
+        echo '</form>';
     }
 
-	protected function renderLabel(\Arastta\Component\Form\Element $element) {
+    protected function renderLabel(Element $element)
+    {
         $label = $element->getLabel();
 
         if (!empty($label)) {
-			echo '<label for="', $element->getAttribute("id"), '">';
+            echo '<label for="', $element->getAttribute("id"), '">';
 
-			if ($element->isRequired()) {
-				echo '<span class="required">* </span>';
-			}
+            if ($element->isRequired()) {
+                echo '<span class="required">* </span>';
+            }
 
-			echo $label;
-			echo '</label>'; 
+            echo $label;
+            echo '</label>';
         }
     }
 }

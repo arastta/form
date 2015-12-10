@@ -48,7 +48,7 @@ $form->addElement(new Element\Number("Number:", "Number"));
 $form->addElement(new Element\Range("Range:", "Range"));
 $form->addElement(new Element\Color("Color:", "Color"));
 $form->addElement(new Element\HTML('<legend>jQuery UI</legend>'));
-$form->addElement(new Element\jQueryUIDate("Date:", "jQueryUIDate"));
+$form->addElement(new Element\JQueryUIDate("Date:", "JQueryUIDate"));
 $form->addElement(new Element\Checksort("Checksort:", "Checksort", $options));
 $form->addElement(new Element\Sort("Sort:", "Sort", $options));
 $form->addElement(new Element\HTML('<legend>Custom/Other</legend>'));

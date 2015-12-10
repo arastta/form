@@ -1,29 +1,35 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form\View;
 
-class Vertical extends \Arastta\Component\Form\View {
-	
-	public function render() {
-		echo '<form', $this->_form->getAttributes(), '>';
+use Arastta\Component\Form\View as View;
+use Arastta\Component\Form\Element as Element;
+use Arastta\Component\Form\Element\Button as Button;
 
-		$this->_form->getErrorView()->render();
+class Vertical extends View
+{
+    
+    public function render()
+    {
+        echo '<form', $this->form->getAttributes(), '>';
 
-		$elements = $this->_form->getElements();
+        $this->form->getErrorView()->render();
+
+        $elements = $this->form->getElements();
         $elementSize = sizeof($elements);
         $elementCount = 0;
 
-        for($e = 0; $e < $elementSize; ++$e) {
+        for ($e = 0; $e < $elementSize; ++$e) {
             $element = $elements[$e];
 
-            if ($element instanceof \Arastta\Component\Form\Element\Button) {
-                if ($e == 0 || !$elements[($e - 1)] instanceof \Arastta\Component\Form\Element\Button) {
+            if ($element instanceof Button) {
+                if ($e == 0 || !$elements[($e - 1)] instanceof Button) {
                     echo '<div class="form-actions">';
                 } else {
                     echo ' ';
@@ -31,7 +37,7 @@ class Vertical extends \Arastta\Component\Form\View {
 
                 $element->render();
 
-                if (($e + 1) == $elementSize || !$elements[($e + 1)] instanceof \Arastta\Component\Form\Element\Button) {
+                if (($e + 1) == $elementSize || !$elements[($e + 1)] instanceof Button) {
                     echo '</div>';
                 }
             } else {
@@ -39,28 +45,29 @@ class Vertical extends \Arastta\Component\Form\View {
 
                 $element->render();
 
-				$this->renderDescriptions($element);
+                $this->renderDescriptions($element);
 
                 ++$elementCount;
             }
         }
 
-		echo '</form>';
+        echo '</form>';
     }
 
-	protected function renderLabel(\Arastta\Component\Form\Element $element) {
+    protected function renderLabel(Element $element)
+    {
         $label = $element->getLabel();
 
-		echo '<label for="', $element->getAttribute("id"), '">';
+        echo '<label for="', $element->getAttribute("id"), '">';
 
-        if(!empty($label)) {
-			if($element->isRequired()) {
+        if (!empty($label)) {
+            if ($element->isRequired()) {
                 echo '<span class="required">* </span>';
             }
 
-			echo $label;
+            echo $label;
         }
 
-		echo '</label>'; 
+        echo '</label>';
     }
-}	
+}

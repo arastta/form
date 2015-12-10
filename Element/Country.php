@@ -1,19 +1,21 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form\Element;
 
-class Country extends Select {
-	
-	public function __construct($label, $name, array $properties = null) {
-		$options = array(
-			"" => "--Select Country--",
-			"US" => "United States",
+class Country extends Select
+{
+    
+    public function __construct($label, $name, array $properties = null)
+    {
+        $options = array(
+            "" => "--Select Country--",
+            "US" => "United States",
             "AF" => "Afghanistan",
             "AX" => "Aland Islands",
             "AL" => "Albania",
@@ -67,7 +69,7 @@ class Country extends Select {
             "CD" => "Congo, The Democratic Republic Of The",
             "CK" => "Cook Islands",
             "CR" => "Costa Rica",
-			"CI" => "Cote D'ivoire",
+            "CI" => "Cote D'ivoire",
             "HR" => "Croatia",
             "CY" => "Cyprus",
             "CZ" => "Czech Republic",
@@ -125,7 +127,7 @@ class Country extends Select {
             "JE" => "Jersey",
             "JO" => "Jordan",
             "KZ" => "Kazakhstan",
-			"KE" => "Kenya",
+            "KE" => "Kenya",
             "KI" => "Kiribati",
             "KR" => "Korea, Republic Of",
             "KW" => "Kuwait",
@@ -183,7 +185,7 @@ class Country extends Select {
             "PA" => "Panama",
             "PG" => "Papua New Guinea",
             "PY" => "Paraguay",
-			"PE" => "Peru",
+            "PE" => "Peru",
             "PH" => "Philippines",
             "PN" => "Pitcairn",
             "PL" => "Poland",
@@ -240,7 +242,7 @@ class Country extends Select {
             "UG" => "Uganda",
             "UA" => "Ukraine",
             "AE" => "United Arab Emirates",
-			"GB" => "United Kingdom",
+            "GB" => "United Kingdom",
             "UM" => "United States Minor Outlying Islands",
             "UY" => "Uruguay",
             "UZ" => "Uzbekistan",
@@ -254,7 +256,7 @@ class Country extends Select {
             "YE" => "Yemen",
             "ZM" => "Zambia",
             "ZW" => "Zimbabwe"
-		);
+        );
 
         parent::__construct($label, $name, $options, $properties);
     }
