@@ -10,10 +10,10 @@ namespace Arastta\Component\Form\Element;
 
 class YesNo extends Radio {
 	
-	public function __construct($label, $name, array $properties = null) {
+	public function __construct($label, $name, array $properties = null, array $options_text = null) {
 		$options = array(
-			"1" => "Yes",
-			"0" => "No"
+			"1" => isset($options_text['yes']) ? $options_text['yes'] : "Yes",
+			"0" => isset($options_text['no'])  ? $options_text['no']  : "No"
 		);
 
 		if (!is_array($properties)) {

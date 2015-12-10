@@ -10,11 +10,12 @@ namespace Arastta\Component\Form\Element;
 
 class Radio extends \Arastta\Component\Form\OptionElement {
 	
-	protected $_attributes = array("type" => "radio");
+	protected $_attributes = array("type" => "radio", "labelclass" => "");
 	protected $inline;
 
 	public function render() { 
 		$labelClass = $this->_attributes["type"];
+		$labelClass .= " " . $this->_attributes["labelclass"];
 
 		if (!empty($this->inline)) {
 			$labelClass .= " inline";
