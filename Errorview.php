@@ -1,33 +1,39 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form;
 
-abstract class ErrorView extends Base {
-	
-	protected $_form;
+abstract class ErrorView extends Base
+{
+    
+    protected $form;
 
-	public function __construct(array $properties = null) {
-		$this->configure($properties);
-	}
+    public function __construct(array $properties = null)
+    {
+        $this->configure($properties);
+    }
 
-	public abstract function applyAjaxErrorResponse();
+    abstract public function applyAjaxErrorResponse();
 
-	public function clear() {
-		echo 'jQuery("#', $this->_form->getAttribute("id"), ' .alert-error").remove();';
-	}
+    public function clear()
+    {
+        echo 'jQuery("#', $this->form->getAttribute("id"), ' .alert-error").remove();';
+    }
 
-	public abstract function render();
-	public abstract function renderAjaxErrorResponse();
+    abstract public function render();
+    abstract public function renderAjaxErrorResponse();
 
-	public function renderCSS() {}
+    public function renderCSS()
+    {
+    }
 
-	public function _setForm(Form $form) {
-		$this->_form = $form;
-	}
+    public function setForm(Form $form)
+    {
+        $this->form = $form;
+    }
 }

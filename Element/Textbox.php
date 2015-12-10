@@ -1,62 +1,67 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form\Element;
 
-class Textbox extends \Arastta\Component\Form\Element {
-	
-	protected $_attributes = array("type" => "text", "class" => "form-control");
-	protected $prepend;
-	protected $append;
+use Arastta\Component\Form\Element;
 
-	public function render() {
-		$addons = array();
+class Textbox extends Element
+{
+    
+    protected $attributes = array("type" => "text", "class" => "form-control");
+    protected $prepend;
+    protected $append;
 
-		if (!empty($this->prepend)) {
-			$addons[] = "input-prepend";
-		}
-		
-		if (!empty($this->append)) {
-			$addons[] = "input-append";
-		}
-		
-		if (!empty($addons)) {
-			echo '<div class="', implode(" ", $addons), '">';
-		}
-		
-		$this->renderAddOn("prepend");
-		
-		parent::render();
-		
-		$this->renderAddOn("append");
+    public function render()
+    {
+        $addons = array();
 
-		if (!empty($addons)) {
-			echo '</div>';
-		}
-	}
+        if (!empty($this->prepend)) {
+            $addons[] = "input-prepend";
+        }
+        
+        if (!empty($this->append)) {
+            $addons[] = "input-append";
+        }
+        
+        if (!empty($addons)) {
+            echo '<div class="', implode(" ", $addons), '">';
+        }
+        
+        $this->renderAddOn("prepend");
+        
+        parent::render();
+        
+        $this->renderAddOn("append");
 
-	protected function renderAddOn($type = "prepend") {
-		if (!empty($this->$type)) {
-			$span = true;
-			
-			if (strpos($this->$type, "<button") !== false) {
-				$span = false;
-			}
-			
-			if ($span) {
-				echo '<span class="add-on">';
-			}
-				
-			echo $this->$type;
+        if (!empty($addons)) {
+            echo '</div>';
+        }
+    }
 
-			if ($span) {
-				echo '</span>';
-			}
-		}
-	}
+    protected function renderAddOn($type = "prepend")
+    {
+        if (!empty($this->$type)) {
+            $span = true;
+            
+            if (strpos($this->$type, "<button") !== false) {
+                $span = false;
+            }
+            
+            if ($span) {
+                echo '<span class="add-on">';
+            }
+                
+            echo $this->$type;
+
+            if ($span) {
+                echo '</span>';
+            }
+        }
+    }
 }

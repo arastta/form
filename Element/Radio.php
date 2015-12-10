@@ -1,40 +1,46 @@
 <?php
 /**
- * @package		Arastta Form Component
- * @copyright	Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
- * @copyright	Copyright (C) 2009-2013 Luke Korth
- * @license		GNU General Public License version 3; see LICENSE.txt
+ * @package         Arastta Form Component
+ * @copyright   Copyright (C) 2015 Arastta Association. All rights reserved. (arastta.org)
+ * @copyright   Copyright (C) 2009-2013 Luke Korth
+ * @license         GNU General Public License version 3; see LICENSE.txt
  */
 
 namespace Arastta\Component\Form\Element;
 
-class Radio extends \Arastta\Component\Form\OptionElement {
-	
-	protected $_attributes = array("type" => "radio", "labelclass" => "");
-	protected $inline;
+use Arastta\Component\Form\OptionElement;
 
-	public function render() { 
-		$labelClass = $this->_attributes["type"];
-		$labelClass .= " " . $this->_attributes["labelclass"];
+class Radio extends OptionElement
+{
+    
+    protected $attributes = array("type" => "radio", "labelclass" => "");
+    protected $inline;
 
-		if (!empty($this->inline)) {
-			$labelClass .= " inline";
-		}
+    public function render()
+    {
+        $labelClass = $this->attributes["type"];
+        $labelClass .= " " . $this->attributes["labelclass"];
 
-		$count = 0;
+        if (!empty($this->inline)) {
+            $labelClass .= " inline";
+        }
 
-		foreach ($this->options as $value => $text) {
-			$value = $this->getOptionValue($value);
+        $count = 0;
 
-			echo '<label class="', $labelClass . '"> <input id="', $this->_attributes["id"], '-', $count, '"', $this->getAttributes(array("id", "value", "checked")), ' value="', $this->filter($value), '"';
+        foreach ($this->options as $value => $text) {
+            $value = $this->getOptionValue($value);
 
-			if (isset($this->_attributes["value"]) && $this->_attributes["value"] == $value) {
-				echo ' checked="checked"';
-			}
+            echo '<label class="' . $labelClass . '">
+                     <input id="' . $this->attributes["id"] . '-' . $count . '"' .
+                       $this->getAttributes(array("id", "value", "checked")) . ' value="' . $this->filter($value) . '"';
 
-			echo '/> ', $text, ' </label> ';
+            if (isset($this->attributes["value"]) && $this->attributes["value"] == $value) {
+                echo ' checked="checked"';
+            }
 
-			++$count;
-		}	
-	}
+            echo '/> ' . $text . ' </label> ';
+
+            ++$count;
+        }
+    }
 }
