@@ -78,8 +78,8 @@ abstract class Base
     {
         $value = "";
 
-        if (isset($this->_attributes[$attribute])) {
-            $value =  $this->_attributes[$attribute];
+        if (isset($this->attributes[$attribute])) {
+            $value =  $this->attributes[$attribute];
         }
 
         return $value;
@@ -91,18 +91,18 @@ abstract class Base
     {
         $str = "";
 
-        if (!empty($this->_attributes)) {
+        if (!empty($this->attributes)) {
             if (!is_array($ignore)) {
                 $ignore = array($ignore);
             }
 
-            $attributes = array_diff(array_keys($this->_attributes), $ignore);
+            $attributes = array_diff(array_keys($this->attributes), $ignore);
 
             foreach ($attributes as $attribute) {
                 $str .= ' ' . $attribute;
 
-                if ($this->_attributes[$attribute] !== "") {
-                    $str .= '="' . $this->filter($this->_attributes[$attribute]) . '"';
+                if ($this->attributes[$attribute] !== "") {
+                    $str .= '="' . $this->filter($this->attributes[$attribute]) . '"';
                 }
             }
         }
@@ -112,19 +112,19 @@ abstract class Base
 
     public function appendAttribute($attribute, $value)
     {
-        if (isset($this->_attributes)) {
-            if (!empty($this->_attributes[$attribute])) {
-                $this->_attributes[$attribute] .= " " . $value;
+        if (isset($this->attributes)) {
+            if (!empty($this->attributes[$attribute])) {
+                $this->attributes[$attribute] .= " " . $value;
             } else {
-                $this->_attributes[$attribute] = $value;
+                $this->attributes[$attribute] = $value;
             }
         }
     }
 
     public function setAttribute($attribute, $value)
     {
-        if (isset($this->_attributes)) {
-            $this->_attributes[$attribute] = $value;
+        if (isset($this->attributes)) {
+            $this->attributes[$attribute] = $value;
         }
     }
 }
