@@ -8,7 +8,7 @@
 
 namespace Arastta\Component\Form\Validation;
 
-class AlphaNumeric extends RegExp
+class Alphanumeric extends RegExp
 {
     
     protected $message = "Error: %element% must be alphanumeric
