@@ -8,7 +8,7 @@
 
 namespace Arastta\Component\Form\Element;
 
-class SummerNote extends Textarea
+class Summernote extends Textarea
 {
     
     protected $basic;
