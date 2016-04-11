@@ -14,8 +14,10 @@ class Checksort extends Sort
     protected $attributes = array("type" => "checkbox");
     protected $inline;
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         if (isset($this->attributes["value"])) {
             if (!is_array($this->attributes["value"])) {
                 $this->attributes["value"] = array($this->attributes["value"]);
@@ -41,19 +43,19 @@ class Checksort extends Sort
             $value = $this->getOptionValue($value);
             
             if (!empty($this->inline) && $count > 0) {
-                echo ' ';
+                $html .= ' ';
             }
-            
-            echo '<label class="' . $labelClass . '">
+
+            $html .= '<label class="' . $labelClass . '">
                     <input id="' . $this->attributes["id"] . '-' . $count . '"' .
                         $this->getAttributes(array("id", "value", "checked", "name", "onclick", "required")) .
                         ' value="' . $this->filter($value) . '"';
             
             if (in_array($value, $this->attributes["value"])) {
-                echo ' checked="checked"';
+                $html .= ' checked="checked"';
             }
-            
-            echo ' onclick="updateChecksort(this, \'' .
+
+            $html .= ' onclick="updateChecksort(this, \'' .
                     str_replace(array('"', "'"), array('&quot;', "\'"), $text) . '\');"/>' . $text . '</label>';
 
             if (in_array($value, $this->attributes["value"])) {
@@ -65,7 +67,9 @@ class Checksort extends Sort
             ++$count;
         }
 
-        echo '<ul id="' . $this->attributes["id"] . '">' . $existing . '</ul>';
+        $html .= '<ul id="' . $this->attributes["id"] . '">' . $existing . '</ul>';
+
+        return $html;
     }
 
     public function renderJS()

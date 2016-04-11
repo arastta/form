@@ -17,8 +17,12 @@ class Email extends Textbox
 
     public function render()
     {
+        $html = '';
+
         $this->validation[] = new ValidationEmail();
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

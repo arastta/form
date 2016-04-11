@@ -16,6 +16,8 @@ class Color extends Textbox
 
     public function render()
     {
+        $html = '';
+
         $this->attributes["pattern"] = "#[a-g0-9]{6}";
         $this->attributes["title"]   = "6-digit hexidecimal color (e.g. #000000)";
 
@@ -23,6 +25,8 @@ class Color extends Textbox
 
         $this->validation[] = new RegExp("/" . $this->attributes["pattern"] . "/", $msg);
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

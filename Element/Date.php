@@ -27,12 +27,16 @@ class Date extends Textbox
         parent::__construct($label, $name, $properties);
     }
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         $msg =  "Error: The %element% field must match the following date format: " . $this->attributes["title"];
 
         $this->validation[] = new RegExp("/" . $this->attributes["pattern"] . "/", $msg);
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

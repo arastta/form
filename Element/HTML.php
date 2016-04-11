@@ -20,8 +20,8 @@ class HTML extends Element
         parent::__construct("", "", $properties);
     }
 
-    public function render()
+    public function getInput()
     {
-        echo $this->attributes["value"];
+        return $this->attributes["value"];
     }
 }

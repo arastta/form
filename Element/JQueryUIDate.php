@@ -41,10 +41,14 @@ class JQueryUIDate extends Textbox
         echo 'jQuery("#', $this->attributes["id"], '").datepicker(', $this->jQueryOptions(), ');';
     }
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         $this->validation[] = new Date;
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

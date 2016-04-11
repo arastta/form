@@ -35,7 +35,7 @@ class SideBySide extends View
 
             if ($element instanceof Hidden || $element instanceof HTML
             ) {
-                $element->render();
+                $element->getInput();
             } elseif ($element instanceof Button) {
                 if ($e == 0 || !$elements[($e - 1)] instanceof Button) {
                     echo '<div class="form-actions">';
@@ -58,9 +58,9 @@ class SideBySide extends View
                 }
 
                 echo '<div class="form-group ' . $required . '">' .
-                        $this->renderLabel($element) .
+                        $this->getLabel($element) .
                         '<div class="col-sm-10">' .
-                            $element->render() . $this->renderDescriptions($element) .
+                            $element->getInput() . $this->getDescriptions($element) .
                         '</div>
                       </div>';
 
@@ -71,13 +71,17 @@ class SideBySide extends View
         echo '</fieldset></form>';
     }
 
-    protected function renderLabel(Element $element)
+    protected function getLabel(Element $element)
     {
+        $html = '';
+
         $label = $element->getLabel();
 
         if (!empty($label)) {
-            echo '<label class="col-sm-2 control-label" for="' . $element->getAttribute("id") . '">';
-            echo $label . '</label>';
+            $html .= '<label class="col-sm-2 control-label" for="' . $element->getAttribute("id") . '">';
+            $html .= $label . '</label>';
         }
+
+        return $html;
     }
 }

@@ -22,12 +22,12 @@ class Captcha extends Element
         parent::__construct($label, "recaptcha_response_field", $properties);
     }
 
-    public function render()
+    public function getInput()
     {
         $this->validation[] = new ValidationCaptcha($this->privateKey);
 
         require_once(__DIR__ . "/../Resources/recaptchalib.php");
 
-        echo recaptcha_get_html($this->publicKey);
+        return recaptcha_get_html($this->publicKey);
     }
 }

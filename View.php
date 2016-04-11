@@ -36,21 +36,23 @@ abstract class View extends Base
         echo 'span.help-inline, span.help-block { color: #888; font-size: .9em; font-style: italic; }';
     }
 
-    protected function renderDescriptions($element)
+    protected function getDescriptions($element)
     {
+        $html = '';
+
         $shortDesc = $element->getShortDesc();
 
         if (!empty($shortDesc)) {
-            echo '<span class="help-inline">', $shortDesc, '</span>';
-            ;
+            $html .= '<span class="help-inline">' . $shortDesc . '</span>';
         }
 
         $longDesc = $element->getLongDesc();
 
         if (!empty($longDesc)) {
-            echo '<span class="help-block">', $longDesc, '</span>';
-            ;
+            $html .= '<span class="help-block">' . $longDesc . '</span>';
         }
+
+        return $html;
     }
 
     public function renderJS()

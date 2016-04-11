@@ -15,14 +15,18 @@ class Textarea extends Element
     
     protected $attributes = array("rows" => "5", "class" => "form-control");
 
-    public function render()
+    public function getInput()
     {
-        echo "<textarea", $this->getAttributes("value"), ">";
+        $html = '';
+
+        $html .= "<textarea" . $this->getAttributes("value") . ">";
         
         if (!empty($this->attributes["value"])) {
-            echo $this->filter($this->attributes["value"]);
+            $html .= $this->filter($this->attributes["value"]);
         }
         
-        echo "</textarea>";
+        $html .= "</textarea>";
+
+        return $html;
     }
 }

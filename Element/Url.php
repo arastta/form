@@ -17,8 +17,12 @@ class Url extends Textbox
 
     public function render()
     {
+        $html = '';
+
         $this->validation[] = new ValidationUrl;
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

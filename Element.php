@@ -156,9 +156,9 @@ abstract class Element extends Base
     /*Many of the included elements make use of the <input> tag for display.  These include the Hidden, Textbox,
     Password, Date, Color, Button, Email, and File element classes.  The project's other element classes will
         override this method with their own implementation.*/
-    public function render()
+    public function getInput()
     {
-        echo '<input', $this->getAttributes(), '/>';
+        return '<input' . $this->getAttributes() . '/>';
     }
 
     /*If an element requires inline stylesheet definitions, this method is used send them to the browser before

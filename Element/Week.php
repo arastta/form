@@ -29,10 +29,14 @@ class Week extends Textbox
 
     public function render()
     {
+        $html = '';
+
         $msg =  "Error: The %element% field must match the following date format: " . $this->attributes["title"];
 
         $this->validation[] = new RegExp("/" . $this->attributes["pattern"] . "/", $msg);
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

@@ -35,17 +35,17 @@ class Vertical extends View
                     echo ' ';
                 }
 
-                $element->render();
+                $element->getInput();
 
                 if (($e + 1) == $elementSize || !$elements[($e + 1)] instanceof Button) {
                     echo '</div>';
                 }
             } else {
-                $this->renderLabel($element);
+                $this->getLabel($element);
 
-                $element->render();
+                $element->getInput();
 
-                $this->renderDescriptions($element);
+                $this->getDescriptions($element);
 
                 ++$elementCount;
             }
@@ -54,20 +54,24 @@ class Vertical extends View
         echo '</form>';
     }
 
-    protected function renderLabel(Element $element)
+    protected function getLabel(Element $element)
     {
+        $html = '';
+
         $label = $element->getLabel();
 
-        echo '<label for="', $element->getAttribute("id"), '">';
+        $html .= '<label for="' . $element->getAttribute("id") . '">';
 
         if (!empty($label)) {
             if ($element->isRequired()) {
-                echo '<span class="required">* </span>';
+                $html .= '<span class="required">* </span>';
             }
 
-            echo $label;
+            $html .= $label;
         }
 
-        echo '</label>';
+        $html .= '</label>';
+
+        return $html;
     }
 }

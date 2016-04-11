@@ -16,8 +16,10 @@ class Radio extends OptionElement
     protected $attributes = array("type" => "radio", "labelclass" => "");
     protected $inline;
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         $labelClass = $this->attributes["type"];
         $labelClass .= " " . $this->attributes["labelclass"];
 
@@ -30,17 +32,19 @@ class Radio extends OptionElement
         foreach ($this->options as $value => $text) {
             $value = $this->getOptionValue($value);
 
-            echo '<label class="' . $labelClass . '">
+            $html .= '<label class="' . $labelClass . '">
                      <input id="' . $this->attributes["id"] . '-' . $count . '"' .
                        $this->getAttributes(array("id", "value", "checked")) . ' value="' . $this->filter($value) . '"';
 
             if (isset($this->attributes["value"]) && $this->attributes["value"] == $value) {
-                echo ' checked="checked"';
+                $html .= ' checked="checked"';
             }
 
-            echo '/> ' . $text . ' </label> ';
+            $html .= '/> ' . $text . ' </label> ';
 
             ++$count;
         }
+
+        return $html;
     }
 }

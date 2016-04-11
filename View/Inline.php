@@ -35,7 +35,7 @@ class Inline extends View
 
             $element = $elements[$e];
 
-            echo $this->renderLabel($element), ' ', $element->render(), $this->renderDescriptions($element);
+            echo $this->getLabel($element), ' ', $element->getInput(), $this->getDescriptions($element);
 
             ++$elementCount;
         }
@@ -43,19 +43,23 @@ class Inline extends View
         echo '</form>';
     }
 
-    protected function renderLabel(Element $element)
+    protected function getLabel(Element $element)
     {
+        $html = '';
+
         $label = $element->getLabel();
 
         if (!empty($label)) {
-            echo '<label for="', $element->getAttribute("id"), '">';
+            $html .= '<label for="' . $element->getAttribute("id") . '">';
 
             if ($element->isRequired()) {
-                echo '<span class="required">* </span>';
+                $html .= '<span class="required">* </span>';
             }
 
-            echo $label;
-            echo '</label>';
+            $html .= $label;
+            $html .= '</label>';
         }
+
+        return $html;
     }
 }

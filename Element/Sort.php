@@ -35,22 +35,27 @@ class Sort extends OptionElement
         echo 'jQuery("#' . $this->attributes["id"] . '").disableSelection();';
     }
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         if (substr($this->attributes["name"], -2) != "[]") {
             $this->attributes["name"] .= "[]";
         }
 
-        echo '<ul id="' . $this->attributes["id"] . '">';
+        $html .= '<ul id="' . $this->attributes["id"] . '">';
 
         foreach ($this->options as $value => $text) {
             $value = $this->getOptionValue($value);
 
-            echo '<li class="ui-state-default">
+            $html .= '<li class="ui-state-default">
                     <input type="hidden" name="' . $this->attributes["name"] . '" value="' . $value . '"/>' . $text .
                  '</li>';
         }
-        echo "</ul>";
+
+        $html .= "</ul>";
+
+        return $html;
     }
 
     public function renderCSS()

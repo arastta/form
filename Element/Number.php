@@ -17,8 +17,12 @@ class Number extends Textbox
 
     public function render()
     {
+        $html = '';
+
         $this->validation[] = new Numeric;
 
-        parent::render();
+        $html .= parent::getInput();
+
+        return $html;
     }
 }

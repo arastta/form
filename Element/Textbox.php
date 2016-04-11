@@ -17,8 +17,10 @@ class Textbox extends Element
     protected $prepend;
     protected $append;
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         $addons = array();
 
         if (!empty($this->prepend)) {
@@ -30,22 +32,26 @@ class Textbox extends Element
         }
         
         if (!empty($addons)) {
-            echo '<div class="', implode(" ", $addons), '">';
+            $html .= '<div class="' . implode(" ", $addons) . '">';
         }
-        
-        $this->renderAddOn("prepend");
-        
-        parent::render();
-        
-        $this->renderAddOn("append");
+
+        $html .= $this->getAddOn("prepend");
+
+        $html .= parent::getInput();
+
+        $html .= $this->getAddOn("append");
 
         if (!empty($addons)) {
-            echo '</div>';
+            $html .= '</div>';
         }
+
+        return $html;
     }
 
-    protected function renderAddOn($type = "prepend")
+    protected function getAddOn($type = "prepend")
     {
+        $html = '';
+
         if (!empty($this->$type)) {
             $span = true;
             
@@ -54,14 +60,16 @@ class Textbox extends Element
             }
             
             if ($span) {
-                echo '<span class="add-on">';
+                $html .= '<span class="add-on">';
             }
-                
-            echo $this->$type;
+
+            $html .= $this->$type;
 
             if ($span) {
-                echo '</span>';
+                $html .= '</span>';
             }
         }
+
+        return $html;
     }
 }

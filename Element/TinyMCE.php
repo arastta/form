@@ -15,15 +15,19 @@ class TinyMCE extends Textarea
     protected $jspath;
     protected $function_name;
 
-    public function render()
+    public function getInput()
     {
-        echo "<textarea", $this->getAttributes(array("value", "required")), ">";
+        $html = '';
+
+        $html .= "<textarea" . $this->getAttributes(array("value", "required")) . ">";
         
         if (!empty($this->attributes["value"])) {
-            echo $this->attributes["value"];
+            $html .= $this->attributes["value"];
         }
         
-        echo "</textarea>";
+        $html .= "</textarea>";
+
+        return $html;
     }
 
     public function renderJS()

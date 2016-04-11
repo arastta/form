@@ -16,8 +16,10 @@ class Checkbox extends OptionElement
     protected $attributes = array("type" => "checkbox");
     protected $inline;
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         if (isset($this->attributes["value"])) {
             if (!is_array($this->attributes["value"])) {
                 $this->attributes["value"] = array($this->attributes["value"]);
@@ -41,18 +43,20 @@ class Checkbox extends OptionElement
         foreach ($this->options as $value => $text) {
             $value = $this->getOptionValue($value);
 
-            echo '<label class="' . $labelClass . '">
+            $html .= '<label class="' . $labelClass . '">
                     <input id="' . $this->attributes["id"] . '-' . $count . '"' .
                         $this->getAttributes(array("id", "value", "checked", "required")) .
                         ' value="' . $this->filter($value) . '"';
             
             if (in_array($value, $this->attributes["value"])) {
-                echo ' checked="checked"';
+                $html .= ' checked="checked"';
             }
-            
-            echo '/> ' . $text . ' </label> ';
+
+            $html .= '/> ' . $text . ' </label> ';
             
             ++$count;
         }
+
+        return $html;
     }
 }

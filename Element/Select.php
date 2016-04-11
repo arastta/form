@@ -15,8 +15,10 @@ class Select extends OptionElement
     
     protected $attributes = array();
 
-    public function render()
+    public function getInput()
     {
+        $html = '';
+
         if (isset($this->attributes["value"])) {
             if (!is_array($this->attributes["value"])) {
                 $this->attributes["value"] = array($this->attributes["value"]);
@@ -29,23 +31,25 @@ class Select extends OptionElement
             $this->attributes["name"] .= "[]";
         }
 
-        echo '<select', $this->getAttributes(array("value", "selected")), '>';
+        $html .= '<select' . $this->getAttributes(array("value", "selected")) . '>';
         
         $selected = false;
         
         foreach ($this->options as $value => $text) {
             $value = $this->getOptionValue($value);
-            
-            echo '<option value="', $this->filter($value), '"';
+
+            $html .= '<option value="' . $this->filter($value) . '"';
             
             if (!$selected && in_array($value, $this->attributes["value"])) {
-                echo ' selected="selected"';
+                $html .= ' selected="selected"';
                 $selected = true;
             }
             
-            echo '>', $text, '</option>';
+            $html .= '>' . $text . '</option>';
         }
         
-        echo '</select>';
+        $html .= '</select>';
+
+        return $html;
     }
 }
