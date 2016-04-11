@@ -35,17 +35,17 @@ class Vertical extends View
                     echo ' ';
                 }
 
-                $element->getInput();
+                echo $element->getInput();
 
                 if (($e + 1) == $elementSize || !$elements[($e + 1)] instanceof Button) {
                     echo '</div>';
                 }
             } else {
-                $this->getLabel($element);
+                echo $this->getLabel($element);
 
-                $element->getInput();
+                echo $element->getInput();
 
-                $this->getDescriptions($element);
+                echo $this->getDescriptions($element);
 
                 ++$elementCount;
             }

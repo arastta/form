@@ -35,7 +35,7 @@ class Inline extends View
 
             $element = $elements[$e];
 
-            echo $this->getLabel($element), ' ', $element->getInput(), $this->getDescriptions($element);
+            echo $this->getLabel($element) . ' ' . $element->getInput() . $this->getDescriptions($element);
 
             ++$elementCount;
         }

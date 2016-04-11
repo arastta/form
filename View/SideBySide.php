@@ -35,7 +35,7 @@ class SideBySide extends View
 
             if ($element instanceof Hidden || $element instanceof HTML
             ) {
-                $element->getInput();
+                echo $element->getInput();
             } elseif ($element instanceof Button) {
                 if ($e == 0 || !$elements[($e - 1)] instanceof Button) {
                     echo '<div class="form-actions">';
@@ -43,7 +43,7 @@ class SideBySide extends View
                     echo ' ';
                 }
 
-                $element->render();
+                echo $element->getInput();
 
                 if (($e + 1) == $elementSize ||
                     !$elements[($e + 1)] instanceof Button
