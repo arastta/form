@@ -231,7 +231,7 @@ function _recaptcha_aes_encrypt($val, $ky)
         die("To use reCAPTCHA Mailhide, you need to have the OpenSSL php module installed.");
     }
     $val=_recaptcha_aes_pad($val);
-    return openssl_encrypt($val, 'aes-128-cbc', hash('sha256', $ky, true));
+    return openssl_encrypt($val, 'aes-128-cbc', $ky);
 }
 
 
